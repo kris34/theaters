@@ -19,6 +19,7 @@ authController.post('/register', async (req, res) => {
       throw new Error('Passwords dont match!');
     }
 
+    console.log(req.body);
     const token = await register(req.body.username, req.body.password);
     //TODO check assignment to see if register creates session
     res.cookie('token', token);
@@ -46,8 +47,9 @@ authController.get('/login', (req, res) => {
 
 authController.post('/login', async (req, res) => {
   try {
-    const token = await login(req.body.username, req.body.password);
 
+    const token = await login(req.body.username, req.body.password);
+     
     res.cookie('token', token);
     res.redirect('/'); //TODO replace with redirect by assignment
   } catch (err) {
@@ -62,8 +64,8 @@ authController.post('/login', async (req, res) => {
   }
 });
 
-authController.get('logout', (req, res) => {
-  res.clearCookie(token);
+authController.get('/logout', (req, res) => {
+  res.clearCookie('token');
   res.redirect('/');
 });
 
