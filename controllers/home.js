@@ -1,14 +1,26 @@
+const { getAllByDate } = require('../services/playService');
+
 const homeController = require('express').Router();
 
-homeController.get('/', (req, res) => {
+homeController.get('/', async (req, res) => {
   let view;
+  let plays = [];
 
-    
-  res.render('guest-home', {
+  if (req.user) {
+    view = 'user-home';
+    plays = await getAllByDate();
+    console.log(plays);
+  } else {
+    view = 'guest-home';
+    plays = await getAllByDate();
+  }
+
+  res.render(view, {
     title: 'Home Page',
+    plays,
   });
-
-
 });
+
+
 
 module.exports = homeController;

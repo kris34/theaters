@@ -1,0 +1,15 @@
+<div>
+  <div class='home-image'>
+    <img src='{{imageUrl}}' alt='Card image cap' />
+  </div>
+  <div class='info'>
+    <h4>{{title}}</h4>
+
+    <div class='info-buttons'>
+      {{#if username}}
+        <a class='btn details' href=''>Details</a>
+      {{/if}}
+      <span class='likes'>likes: {{likesCount}} </span>
+    </div>
+  </div>
+</div>
