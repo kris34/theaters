@@ -17,7 +17,7 @@ homeController.get('/', async (req, res) => {
 
   res.render(view, {
     title: 'Home Page',
-    plays,
+    plays, 
   });
 });
 

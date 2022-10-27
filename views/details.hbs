@@ -1,0 +1,25 @@
+<main>
+  <div class='container'>
+    {{#with play}}
+      <section class='details'>
+        <h1>{{title}}</h1>
+        <div>
+          <img src='{{imageUrl}}' />
+        </div>
+      </section>
+
+      <section class='details'>
+        <h3>Theater Description</h3>
+        <p>
+          {{description}}
+        </p>
+        <div class='buttons'>
+          <a class='btn delete' href=''>Delete</a>
+          <a class='btn edit' href=''>Edit</a>
+          <span class='liked'>You have already liked this play!</span>
+          <a class='btn like' href=''>Like</a>
+        </div>
+      </section>
+    {{/with}}
+  </div>
+</main>

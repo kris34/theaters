@@ -1,4 +1,5 @@
 const { createPlay } = require('../services/playService');
+const { parseError } = require('../util/parser');
 
 const createController = require('express').Router();
 
@@ -8,20 +9,27 @@ createController.get('/', async (req, res) => {
   });
 });
 
- createController.post('/', async (req, res) => {
-  const play = {
-    title: req.body.title,
-    description: req.body.description,
-    imageUrl: req.body.imageUrl,
-    isPublic: req.body.isPublic,
-    
-  };
+createController.post('/', async (req, res) => {
 
-  //console.log(play);
+  try {
+    const play = {
+      title: req.body.title,
+      description: req.body.description,
+      imageUrl: req.body.imageUrl,
+      isPublic: req.body.isPublic,
+    };
 
-  await createPlay(play);
+    //console.log(play);
 
-  res.redirect('/');
-}); 
+    await createPlay(play);
+
+    res.redirect('/');
+  } catch (err) {
+    res.render('create', {
+      title: 'Create',
+      errors: parseError(err),
+    });
+  }
+});
 
 module.exports = createController;
