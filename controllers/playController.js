@@ -1,4 +1,11 @@
-const { getById, likePlay, deleteById } = require('../services/playService');
+const { restart } = require('nodemon');
+const {
+  getById,
+  likePlay,
+  deleteById,
+  editPlay,
+} = require('../services/playService');
+const { parseError } = require('../util/parser');
 
 const playController = require('express').Router();
 
@@ -39,8 +46,35 @@ playController.get('/:id/delete', async (req, res) => {
   }
 });
 
+playController.get('/:id/edit', async (req, res) => {
+  const play = await getById(req.params.id);
 
+  res.render('edit', {
+    title: 'Edit Play',
+    play,
+  });
+});
 
+playController.post('/:id/edit', async (req, res) => {
+  const existing = await getById(req.params.id);
 
+  try {
+    await editPlay(existing, req.body);
+    res.redirect('/');
+  } catch (err) {
+    const errors = parseError(err);
+
+    res.render('edit', {
+      title: 'Edit Play',
+      existing,
+      errors,
+    });
+  }
+
+  res.render('edit', {
+    title: 'Edit Play',
+    existing,
+  });
+});
 
 module.exports = playController;

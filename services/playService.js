@@ -22,14 +22,21 @@ async function likePlay(playId, userid) {
 
 async function getAllByLIkes() {
   return Play.find({}).sort({ likesCount: -1 }).lean();
-} 
+}
 
 async function deleteById(id) {
   return Play.findByIdAndRemove(id);
 }
 
-async function editPlay(play) { 
+async function editPlay(id, data) {
+  const existing = await Play.findById(id);
 
+  existing.title = data.title;
+  existing.description = data.description;
+  existing.imageUrl = data.imageUrl;
+  existing.isPublic = data.isPublic;
+
+  return existing.save();
 }
 module.exports = {
   getAllByDate,
@@ -37,5 +44,6 @@ module.exports = {
   getById,
   likePlay,
   getAllByLIkes,
-  deleteById
+  deleteById,
+  editPlay
 };

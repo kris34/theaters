@@ -16,10 +16,10 @@
         <div class='buttons'>
           {{#if isOwner}}
             <a class='btn delete' href='/play/{{_id}}/delete'>Delete</a>
-            <a class='btn edit' href=''>Edit</a>
+            <a class='btn edit' href='/play/{{_id}}/edit'>Edit</a>
             <span class='liked'>You have already liked this play!</span>
           {{else}}
-            {{#if liked}}
+            {{#if liked}} 
               <p>You have already liked this play!</p>
             {{else}}
               <a class='btn like' href='/play/{{_id}}/like'>Like</a>
