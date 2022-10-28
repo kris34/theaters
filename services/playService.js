@@ -22,12 +22,15 @@ async function likePlay(playId, userid) {
 
 async function getAllByLIkes() {
   return Play.find({}).sort({ likesCount: -1 }).lean();
-}
+} 
 
 async function deleteById(id) {
   return Play.findByIdAndRemove(id);
 }
 
+async function editPlay(play) { 
+
+}
 module.exports = {
   getAllByDate,
   createPlay,
