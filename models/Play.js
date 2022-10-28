@@ -25,6 +25,7 @@ const playSchema = new Schema({
   },
   users: { type: [Types.ObjectId], ref: ' User', default: [] },
   likesCount: { type: Number, default: 0 },
+  owner: { type: Types.ObjectId, ref: 'user' },
 });
 
 playSchema.index(

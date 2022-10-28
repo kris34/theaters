@@ -14,10 +14,17 @@
           {{description}}
         </p>
         <div class='buttons'>
-          <a class='btn delete' href=''>Delete</a>
-          <a class='btn edit' href=''>Edit</a>
-          <span class='liked'>You have already liked this play!</span>
-          <a class='btn like' href=''>Like</a>
+          {{#if isOwner}}
+            <a class='btn delete' href=''>Delete</a>
+            <a class='btn edit' href=''>Edit</a>
+            <span class='liked'>You have already liked this play!</span>
+          {{else}}
+            {{#if liked}}
+              <p>You have already liked this play!</p>
+            {{else}}
+              <a class='btn like' href='/play/{{_id}}/like'>Like</a>
+            {{/if}}
+          {{/if}}
         </div>
       </section>
     {{/with}}

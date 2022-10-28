@@ -9,7 +9,7 @@ homeController.get('/', async (req, res) => {
   if (req.user) {
     view = 'user-home';
     plays = await getAllByDate();
-    console.log(plays);
+   // console.log(plays);
   } else {
     view = 'guest-home';
     plays = await getAllByDate();

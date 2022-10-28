@@ -17,9 +17,9 @@ createController.post('/', async (req, res) => {
       description: req.body.description,
       imageUrl: req.body.imageUrl,
       isPublic: req.body.isPublic,
+      owner: req.user._id
     };
 
-    //console.log(play);
 
     await createPlay(play);
 
