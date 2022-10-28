@@ -20,9 +20,19 @@ async function likePlay(playId, userid) {
   return existing.save();
 }
 
+async function getAllByLIkes() {
+  return Play.find({}).sort({ likesCount: -1 }).lean();
+}
+
+async function deleteById(id) {
+  return Play.findByIdAndRemove(id);
+}
+
 module.exports = {
   getAllByDate,
   createPlay,
   getById,
-  likePlay
+  likePlay,
+  getAllByLIkes,
+  deleteById
 };
